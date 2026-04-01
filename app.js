@@ -75,14 +75,14 @@ async function main() {
     }
 
 
-// app.get('/',(req,res)=>{
-//     res.send('Hi, I am root');
-// });
 
 
 app.use(session(sessionOptions));
 app.use(flash());
 
+app.get("/", (req, res) => {
+  res.redirect("/listings");
+});
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -102,7 +102,7 @@ app.use((req,res,next)=>{
 
 app.use('/listings',listingRouter);
 app.use('/listings/:id/reviews',reviewsRouter);
-app.use('/',userRouter);
+app.use('/users',userRouter);
 
 app.all('*',(req,res,next)=>{
     next(new ExpressError(404,'Page Not Found!'));
