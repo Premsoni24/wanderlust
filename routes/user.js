@@ -19,8 +19,8 @@ router
 .post(
     saveRedirectUrl,
     passport.authenticate('local',{
-        successRedirect:'/listings',
-    failureRedirect:'/login',
+        
+    failureRedirect:'/users/login',
     failureFlash:true,
 }),
 userController.login);
